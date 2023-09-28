@@ -5,7 +5,7 @@ const frutasImagenes = {
     banana: "./img/banana.jpg",
     naranja: "./img/naranja.jpg",
     uva: "./img/uva.jpg",
-    pera: "./img/pera.jpg",
+    pera: "./img/pera.jpg",    
 };
 
 
@@ -41,6 +41,45 @@ function obtenerFrutaAleatoria(frutas) {
 function mostrarImagen(fruta) {
     const imagen = document.querySelector("img");
     imagen.src = frutasImagenes[fruta];    
+}
+
+function obtenerFrutaPorColor(color) {
+    const frutasDelColor = frutas.filter(fruta => obtenerColor(fruta) === color);
+    
+    if (frutasDelColor.length > 0) {
+        const indiceAleatorio = Math.floor(Math.random() * frutasDelColor.length);
+        return frutasDelColor[indiceAleatorio];
+    } else {
+        return "No hay frutas de ese color.";
+    }
+}
+
+let colorSeleccionado = "morado";
+const frutaDeColor = obtenerFrutaPorColor(colorSeleccionado);
+console.log(`Fruta de color ${colorSeleccionado}: ${frutaDeColor}`);
+
+function filtrarFrutasPorColor(color) {
+    return frutas.filter(function (fruta) {
+        const frutaColor = obtenerColor(fruta);
+        return frutaColor === color;
+    });
+}
+
+function obtenerColor(fruta) {
+    switch (fruta) {
+        case "manzana":
+            return "rojo";
+        case "banana":
+            return "amarillo";
+        case "naranja":
+            return "naranja";
+        case "uva":
+            return "morado";
+        case "pera":
+            return "verde";           
+        default:
+            return "desconocido";
+    }
 }
 
 const iniciarJuego = jugarADivinarFruta(frutas, frutasImagenes);
