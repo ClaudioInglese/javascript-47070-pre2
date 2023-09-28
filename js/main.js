@@ -54,9 +54,11 @@ function obtenerFrutaPorColor(color) {
     }
 }
 
-let colorSeleccionado = "morado";
-const frutaDeColor = obtenerFrutaPorColor(colorSeleccionado);
-console.log(`Fruta de color ${colorSeleccionado}: ${frutaDeColor}`);
+let colorSeleccionado = "rojo";
+setTimeout(function () {    
+    const frutaDeColor = obtenerFrutaPorColor(colorSeleccionado);
+    console.log(`Fruta de color ${colorSeleccionado}: ${frutaDeColor}`);
+}, 0);    
 
 function filtrarFrutasPorColor(color) {
     return frutas.filter(function (fruta) {
