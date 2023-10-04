@@ -8,7 +8,6 @@ const frutasImagenes = {
     pera: "./img/pera.jpg",    
 };
 
-
 function jugarADivinarFruta(frutas, frutasImagenes) {
     alert("Bienvenido al juego de adivinanza de frutas. Debes adivinar la fruta secreta.");
     console.log("Mensaje de Bienvenida");
@@ -20,11 +19,12 @@ function jugarADivinarFruta(frutas, frutasImagenes) {
             const intento = prompt("Adivina la fruta:").toLowerCase();
 
             if (intento === frutaAdivinar) {
-                mostrarImagen(frutaAdivinar);                
+                const imagenURL = obtenerURLImagen(frutaAdivinar);
                 adivinado = true;
                 setTimeout(function () {
                     alert("¡Felicidades! Adivinaste la fruta! ");
                     console.log("¡Adivinaste! La fruta es " + frutaAdivinar);
+                    console.log("URL de la imagen: " + imagenURL);
                 }, 50);                
             } else {
                 alert("Esa no es la fruta correcta. Intenta nuevamente.");
@@ -38,9 +38,9 @@ function obtenerFrutaAleatoria(frutas) {
     return frutas[indice];
 }
 
-function mostrarImagen(fruta) {
-    const imagen = document.querySelector("img");
-    imagen.src = frutasImagenes[fruta];    
+
+function obtenerURLImagen(fruta) {
+    return frutasImagenes[fruta];
 }
 
 function obtenerFrutaPorColor(color) {
@@ -86,4 +86,9 @@ function obtenerColor(fruta) {
 
 const iniciarJuego = jugarADivinarFruta(frutas, frutasImagenes);
 
-window.onload = iniciarJuego;
+setTimeout(function () {
+    const frutaAdivinada = obtenerFrutaAleatoria(frutas);
+    const imagenURL = obtenerURLImagen(frutaAdivinada);       
+    iniciarJuego();
+}, 0);
+
