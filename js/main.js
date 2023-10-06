@@ -18,7 +18,7 @@ function jugar(frutas, frutasImagenes) {
             const frutaAdivinar = frutaAleatoria(frutas);
             const intento = prompt("Adivina la fruta:").toLowerCase();
 
-            if (frutas.includes(intento)) {
+            if (existeFruta(intento) == true) {
                 if (intento === frutaAdivinar) {
                     const imagenURL = obtenerURLImagen(frutaAdivinar);
                     adivinado = true;
@@ -36,6 +36,17 @@ function jugar(frutas, frutasImagenes) {
         }
     };
 }
+
+
+function existeFruta(intento){
+    for (let i = 0; i < frutas.length; i++) {
+       if (frutas[i] === intento)
+            return true
+    }
+
+    return false
+}
+
 
 function frutaAleatoria(frutas) {
     const indice = Math.floor(Math.random() * frutas.length);
@@ -96,3 +107,18 @@ setTimeout(function () {
     iniciarJuego();
 }, 0);
 
+
+function verificarColor(color) {
+    const frutaAdivinar = frutaAleatoria(frutas);
+    const colorFrutaAdivinar = obtenerColor(frutaAdivinar);
+
+    if (colorFrutaAdivinar === color) {
+        alert(`¡Correcto! La fruta a adivinar es de color ${color}.`);
+        console.log(`¡Correcto! La fruta a adivinar es de color ${color}.`);
+    } else {
+        alert(`Incorrecto. La fruta a adivinar no es de color ${color}.`);
+        console.log(`Incorrecto. La fruta a adivinar no es de color ${color}.`)
+    }
+}
+
+verificarColor("verde");
