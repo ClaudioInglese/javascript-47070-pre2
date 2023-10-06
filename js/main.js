@@ -108,17 +108,3 @@ setTimeout(function () {
 }, 0);
 
 
-function verificarColor(color) {
-    const frutaAdivinar = frutaAleatoria(frutas);
-    const colorFrutaAdivinar = obtenerColor(frutaAdivinar);
-
-    if (colorFrutaAdivinar === color) {
-        alert(`¡Correcto! La fruta a adivinar es de color ${color}.`);
-        console.log(`¡Correcto! La fruta a adivinar es de color ${color}.`);
-    } else {
-        alert(`Incorrecto. La fruta a adivinar no es de color ${color}.`);
-        console.log(`Incorrecto. La fruta a adivinar no es de color ${color}.`)
-    }
-}
-
-verificarColor("verde");
