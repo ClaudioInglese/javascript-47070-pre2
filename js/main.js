@@ -8,32 +8,36 @@ const frutasImagenes = {
     pera: "./img/pera.jpg",    
 };
 
-function jugarADivinarFruta(frutas, frutasImagenes) {
+function jugar(frutas, frutasImagenes) {
     alert("Bienvenido al juego de adivinanza de frutas. Debes adivinar la fruta secreta.");
     console.log("Mensaje de Bienvenida");
     return function () {
         let adivinado = false;
 
         while (!adivinado) {
-            const frutaAdivinar = obtenerFrutaAleatoria(frutas);
+            const frutaAdivinar = frutaAleatoria(frutas);
             const intento = prompt("Adivina la fruta:").toLowerCase();
 
-            if (intento === frutaAdivinar) {
-                const imagenURL = obtenerURLImagen(frutaAdivinar);
-                adivinado = true;
-                setTimeout(function () {
-                    alert("¡Felicidades! Adivinaste la fruta! ");
-                    console.log("¡Adivinaste! La fruta es " + frutaAdivinar);
-                    console.log("URL de la imagen: " + imagenURL);
-                }, 50);                
+            if (frutas.includes(intento)) {
+                if (intento === frutaAdivinar) {
+                    const imagenURL = obtenerURLImagen(frutaAdivinar);
+                    adivinado = true;
+                    setTimeout(function () {
+                        alert("¡Felicidades! Adivinaste la fruta! ");
+                        console.log("¡Adivinaste! La fruta es " + frutaAdivinar);
+                        console.log("URL de la imagen: " + imagenURL);
+                    }, 50);
+                } else {
+                    alert("Esa no es la fruta correcta. Intenta nuevamente.");
+                }
             } else {
-                alert("Esa no es la fruta correcta. Intenta nuevamente.");
+                alert("Esa no es una fruta válida. Intenta nuevamente.");
             }
         }
     };
 }
 
-function obtenerFrutaAleatoria(frutas) {
+function frutaAleatoria(frutas) {
     const indice = Math.floor(Math.random() * frutas.length);
     return frutas[indice];
 }
@@ -84,10 +88,10 @@ function obtenerColor(fruta) {
     }
 }
 
-const iniciarJuego = jugarADivinarFruta(frutas, frutasImagenes);
+const iniciarJuego = jugar(frutas, frutasImagenes);
 
 setTimeout(function () {
-    const frutaAdivinada = obtenerFrutaAleatoria(frutas);
+    const frutaAdivinada = frutaAleatoria(frutas);
     const imagenURL = obtenerURLImagen(frutaAdivinada);       
     iniciarJuego();
 }, 0);
